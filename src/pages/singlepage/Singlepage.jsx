@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { postcardImageSin, singlepage } from '../../style';
 
 const Singlepage = () => {
     const product = useParams();
@@ -17,12 +18,19 @@ const Singlepage = () => {
             console.log(error)
         }
         
-    },[]);
-    console.log(products);
+    },[product]);
+   
   return (
-    <div>{products?.title}
+    <div className=' w-full h-full md:h-[90vh]  flex md:flex-row flex-col items-center justify-center gap-[25px] py-[50px] px-[20px]   bg-slate-50'>
+    <div className={postcardImageSin}>
+    <img className={singlepage} src={products.image} alt="" />
+    </div>
+
+    <div className=" w-full md:w-[48%] space-y-6">
+        <h1 className=' text-4xl font-bold'>    {products?.title} </h1>
+        <p className=' text-xl font-semibold'>     {products?.description} </p>
+    </div>
     
-    <img src={products.image} alt="" />
     </div>
   )
 }

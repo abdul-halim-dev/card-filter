@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Postcard from '../postcard/Postcard';
+import { categoryStyle } from '../../style';
 
 const Category = () => {
     const one = useParams();
@@ -15,7 +16,7 @@ const Category = () => {
       try {
         setLoader(true)
         const response = await axios.get(`https://fakestoreapi.com/products/category/${one.id}`);
-            console.log(response.data)
+        
             setcard(response.data);
             setLoader(false)
       } catch (error) {
@@ -25,9 +26,11 @@ const Category = () => {
     }
     fetchingCard()
     },[one])
-    if(loader === true) return <div>Products Loading</div>
+    if(loader === true) return <div className='absolute top-[250px] sm:top-[140px] left-0 w-[100vw] h-full flex items-center justify-center bg-slate-100'>
+      <h1 className=' text-4xl md:text-6xl lg:text-8xl text-indigo-700 font-extrabold'> Products Loading...... </h1>
+    </div>
   return (
-    <div>
+    <div className={categoryStyle}>
       {
         card?.map((item)=>(
         <Postcard title={item} key={item.id}/>

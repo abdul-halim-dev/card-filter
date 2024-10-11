@@ -1,14 +1,17 @@
-import React from 'react'
+ 
 import { Link } from 'react-router-dom'
+import { postcardImage, postcardImageWrapper, postcardLink, postHeader, postPara } from '../../style'
 
 const Postcard = ({title}) => {
   return (
-    <Link to={`/singlepage/${title.id}`} className='w-[23%] p-3 bg-slate-50 flex items-center justify-center gap-3 flex-col '>
-        <div className=" w-full h-[200px] ">
-            <img className='w-full h-full object-contain' src={title.image} alt="" />
+    <Link className={postcardLink} to={`/singlepage/${title.id}`} >
+        <div className={postcardImageWrapper} >
+            <img className={postcardImage}  src={title.image} alt="" />
         </div>
-        <h1 > {title.title.substring(0, 30)}</h1>
-
+       <div className="text">
+       <h1 className={postHeader}> {title.title.substring(0, 22)}</h1>
+        <p className={postPara} >{title.description.substring(0, 60)} </p>
+       </div>
 
     </Link>
   )
